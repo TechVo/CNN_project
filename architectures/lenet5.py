@@ -1,5 +1,5 @@
-from keras import layers, models
-from keras.losses import categorical_crossentropy
+from tensorflow.keras import layers, models
+from tensorflow.keras.losses import categorical_crossentropy
 
 class LeNet5(models.Sequential):
     name = "LeNet5"
