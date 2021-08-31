@@ -26,10 +26,10 @@ class AlexNet(models.Sequential):
         
         self.compile(loss=categorical_crossentropy, optimizer=optimizer, metrics=["accuracy"])
 
-    def convert_to_imagenet_size(images):
+    def resize_images(images):
         tmp_images = []
         for image in images:
-            image = skimage.transform.resize(image,(227,227),mode='constant')
+            image = skimage.transform.resize(image, (227, 227), mode='constant')
             image = img_as_ubyte(image)
             tmp_images.append(image)
         return np.array(tmp_images)
