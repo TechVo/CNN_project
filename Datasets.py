@@ -1,6 +1,6 @@
-from keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar10
 
-from keras.utils import np_utils
+from tensorflow.python.keras.utils import np_utils
 
 class Datasets():
     def load_cifar10():
