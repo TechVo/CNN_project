@@ -7,8 +7,11 @@ import numpy as np
 class AlexNet():
     name = "AlexNet"
     
-    def build_model(self, classes, optimizer):
-        input_shape = (227, 227, 3)
+    input_size = 227
+    
+    def build_model(self, classes, optimizer, filters):
+
+        input_shape = (AlexNet.input_size, AlexNet.input_size, filters)
         
         model = models.Sequential()
         
@@ -33,15 +36,14 @@ class AlexNet():
         
         return model
     
-    def ___init__(self, classes, optimizer):
-        self.model = self.build_model(classes, optimizer)
-
+    def __init__(self, classes, optimizer, filters = 3):
+        self.model = self.build_model(classes, optimizer, filters)
 
     @staticmethod
     def resize_images(images):
         tmp_images = []
         for image in images:
-            image = skimage.transform.resize(image, (227, 227), mode='constant')
+            image = skimage.transform.resize(image, (AlexNet.input_size, AlexNet.input_size), mode='constant')
             image = img_as_ubyte(image)
             tmp_images.append(image)
         return np.array(tmp_images)

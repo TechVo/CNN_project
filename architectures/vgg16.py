@@ -6,10 +6,11 @@ import numpy as np
 
 class VGG16():
     name = "VGG 16"
+    input_size = 224
     
-    def build_model(self, classes, optimizer):
+    def build_model(self, classes, optimizer, filters):
         
-        input_shape = (224, 224, 3)
+        input_shape = (VGG16.input_size, VGG16.input_size, filters)
         
         model = models.Sequential()
         
@@ -44,17 +45,15 @@ class VGG16():
         return model
 
     
-    def __init__(self, classes, optimizer):
-        self.model = self.build_model(classes, optimizer)
-        self.bla = "bla"
-    
+    def __init__(self, classes, optimizer, filters = 3):
+        self.model = self.build_model(classes, optimizer, filters)
     
         
     @staticmethod
     def resize_images(images):
         tmp_images = []
         for image in images:
-            image = skimage.transform.resize(image, (224, 224), mode='constant')
+            image = skimage.transform.resize(image, (VGG16.input_size, VGG16.input_size), mode='constant')
             image = img_as_ubyte(image)
             tmp_images.append(image)
         return np.array(tmp_images)
