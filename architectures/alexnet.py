@@ -1,7 +1,7 @@
 from tensorflow.keras import layers, models
 from tensorflow.keras.losses import categorical_crossentropy
 import skimage.transform
-from skimage import img_as_ubyte
+from skimage import img_as_float
 import numpy as np
 
 class AlexNet():
@@ -44,6 +44,5 @@ class AlexNet():
         tmp_images = []
         for image in images:
             image = skimage.transform.resize(image, (AlexNet.input_size, AlexNet.input_size), mode='constant')
-            image = img_as_ubyte(image)
             tmp_images.append(image)
         return np.array(tmp_images)

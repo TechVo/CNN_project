@@ -103,6 +103,5 @@ class ResNet50():
         tmp_images = []
         for image in images:
             image = skimage.transform.resize(image, (ResNet50.input_size, ResNet50.input_size), mode='constant')
-            image = img_as_ubyte(image)
             tmp_images.append(image)
         return np.array(tmp_images)
